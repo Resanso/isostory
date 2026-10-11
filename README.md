@@ -4,6 +4,19 @@ A Claude Code skill for storytelling motion: isometric, coloured, branded storie
 
 Built on the [Hairline](https://github.com/lucasmarkes/hairline) kernel (MIT).
 
+## Examples
+
+Every clip below is one story file in [`examples/`](examples), rendered with `render.mjs` at 1080p. Click a preview for the full MP4.
+
+| | |
+|---|---|
+| [![hiring](media/hiring.gif)](https://github.com/Resanso/isostory/releases/download/v0.1.0/hiring-16x9.mp4) | **Motion component · 16:9 · 19 s** — [`hiring.js`](examples/hiring.js)<br>Résumés pile up, get dealt onto a table, AIDA's bar scores them, the best five fold into cards and move down a hiring pipeline. Theme `paper`, logo printed on the table, chapters + pins, end card. |
+| [![logistics](media/logistics.gif)](https://github.com/Resanso/isostory/releases/download/v0.1.0/logistics-16x9.mp4) | **Motion component · 16:9 · 14 s** — [`logistics.js`](examples/logistics.js) *(fictional brand)*<br>Parcels with the logo on every box ride a conveyor through a scanner gate and load into a truck. Theme `studio`, orange accent, lower-third, pins. |
+| [![fintech](media/fintech-ad.gif)](https://github.com/Resanso/isostory/releases/download/v0.1.0/fintech-ad-1x1.mp4) | **Video ad · 1:1 · 12 s** — [`fintech-ad.js`](examples/fintech-ad.js) *(fictional brand)*<br>Invoices rain down, fly into a phone and get paid while a counter runs, then cash-flow bars rise. Theme `midnight`, violet accent, `mask`/`pop`/`rise` text, karaoke subtitles + [SRT](https://github.com/Resanso/isostory/releases/download/v0.1.0/fintech-ad-1x1.srt). |
+| [![ad](media/ad-hire.gif)](https://github.com/Resanso/isostory/releases/download/v0.1.0/ad-hire-9x16.mp4) | **Video ad · 9:16 · 15 s** — [`ad.js`](examples/ad.js)<br>Cut to a 120 bpm grid: hook in the first second, a quote, a kinetic title with a highlighted word, a 0→92% stat, a lower-third, karaoke subtitles + [SRT](https://github.com/Resanso/isostory/releases/download/v0.1.0/ad-hire-9x16.srt), end card with CTA. |
+
+The same story renders to any aspect: `--aspect 9:16,1:1,16:9`. Add `--alpha` for a transparent WebM + ProRes 4444 to lay over footage.
+
 ## Install
 
 ```sh
@@ -31,5 +44,5 @@ Needs Node 18+, and ffmpeg for `render.mjs`. `look`/`render` install `playwright
 - `rules.md` — story, motion, colour, text and brand rules
 - `isostory.js` — engine + player (API index at the top)
 - `kernel.js` — Hairline kernel
-- `examples/hiring.js` (motion component), `examples/ad.js` (15 s ad)
+- `examples/` — `hiring.js`, `logistics.js` (motion components), `fintech-ad.js`, `ad.js` (ads), `logos/` (fictional logos for the demos)
 - `embed.md` — React/Next and plain-HTML embedding

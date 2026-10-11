@@ -6,3 +6,4 @@ node_modules/
 *.gif
 isostory-*.html
 .DS_Store
+!media/*.gif

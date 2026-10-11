@@ -144,7 +144,7 @@ const BASE_THEMES = {
   // night: dark ground, light edges, glowing accent
   midnight: {
     bg: ["#0f1320", "#070910"], ink: "#eef2fb", edge: "#c9d2e6", line: "#7f8aa3", lo: "#2c3346",
-    shadow: "rgba(0,0,0,0.45)", caption: "#eef2fb", muted: "#97a1b8", accent: "#5b8cff",
+    shadow: "rgba(0,0,0,0.3)", caption: "#eef2fb", muted: "#97a1b8", accent: "#5b8cff",
     palette: { ground: "#171d2e", plate: "#1d2438", paper: "#262f47", card: "#28324d", tray: "#202a42", lane: "#1f2740",
       blue: "#27407a", green: "#1f5a45", amber: "#6b5222", rose: "#6b2f35", violet: "#3d3270", ink: "#eef2fb" },
   },
@@ -354,7 +354,7 @@ function scene(svg, s, view, th) {
           const ground = p.ground ?? 0, lift = Math.max(0, p.z - ground);
           const sp = { ...p, x: p.x + lift * 0.22, y: p.y + lift * 0.22, w: p.w + lift * 0.12, d: p.d + lift * 0.12 };
           el.shadow.setAttribute("d", poly(ringAt(P, footprint(sp, 0), ground)));
-          el.shadow.setAttribute("opacity", clamp(1 - lift / 70, 0.15, 1).toFixed(3));
+          el.shadow.setAttribute("opacity", clamp(1 - lift / 45, 0.08, 1).toFixed(3));
         } else el.shadow.setAttribute("d", "");
       }
       el.shadow.style.opacity = String(op);
