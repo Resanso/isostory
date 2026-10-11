@@ -32,6 +32,9 @@ import { HL } from "./kernel.js";
  *   detail: "cv" | "card" | "lane" | "phone" | "chart" | "chip" | "screen" | "none"
  *   decal: "logo" | { href?, w, d, u?, v? }  an image printed on the top face; no href = the brand logo
  *   marks: (top, P) => path string   custom marks; top(u, v) maps the top face to the screen
+ *   shape: "cyl", axis: "x" | "y"   a cylinder lying down (wheels, rolls, tubes): diameter h, length w (x) or d (y);
+ *                                   the near cap takes `color`, the barrel `side`; hub: inner ring as a share of the radius
+ *   Vertical faces have no marks: put windows, doors and lights on as thin bodies (w or d ≈ 0.6) against the face
  * Text (HTML layer, every frame computed from t: identical on the web and in video)
  *   texts: [{ t0, t1?, text, style?, anim?, by?, stagger?, dur?, at?, align?, emphasis?, count?, exit? }]
  *     style: "title" | "big" | "kicker" | "lower" | "subtitle" | "quote" | "stat" | "caption"
@@ -54,7 +57,7 @@ import { HL } from "./kernel.js";
  *   ?frame in the URL forces frame mode and exposes window.__iso = { duration, seek, poster, ready }
  * ============================================================== */
 
-const { Cam, fit, proj, facing, rrect, prism, ringAt, poly, open, seg, circ, mk, bezier } = HL;
+const { Cam, fit, proj, facing, rrect, prism, ringAt, poly, open, seg, circ, mk, bezier, hull } = HL;
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const mix = (a, b, p) => a + (b - a) * p;
 
@@ -341,14 +344,25 @@ function scene(svg, s, view, th) {
       const key = camKey + `|${p.x.toFixed(2)},${p.y.toFixed(2)},${p.z.toFixed(2)},${p.w.toFixed(2)},${p.d.toFixed(2)},${p.h.toFixed(2)},${(p.rot ?? 0).toFixed(2)},${p.detail}`;
       if (key !== el.key) {
         el.key = key;
-        const ring = footprint(p, 0), inner = footprint(p, p.b ?? 1);
-        const sh = prism(P, front, ring, inner, p.z, p.z + p.h);
-        el.side.setAttribute("d", sh.sil);
-        el.top.setAttribute("d", poly(ringAt(P, ring, p.z + p.h)));
-        el.crease.setAttribute("d", sh.crease);
         const top = topOf(P, p);
-        el.marks.setAttribute("d", (p.marks ? p.marks(top, P, p) : "") + detailMarks(top, p));
-        decal(el, p, top);
+        if (p.shape === "cyl" && p.axis && p.axis !== "z") {
+          // a cylinder lying along x or y (wheels, rolls, tubes): the near cap is the face, the hull is the side
+          const ax = p.axis === "x", R = p.h / 2, zc = p.z + R, half = (ax ? p.w : p.d) / 2;
+          const capAt = (end, r) => circ(r, 28).map((q) => (ax ? P(p.x + end, p.y + q.u, zc + q.v) : P(p.x + q.u, p.y + end, zc + q.v)));
+          const near = capAt(half, R), far = capAt(-half, R);
+          el.side.setAttribute("d", poly(hull(near.concat(far))));
+          el.top.setAttribute("d", poly(near));
+          el.crease.setAttribute("d", poly(capAt(half, R * (p.hub ?? 0.42))));
+          el.marks.setAttribute("d", "");
+        } else {
+          const ring = footprint(p, 0), inner = footprint(p, p.b ?? 1);
+          const sh = prism(P, front, ring, inner, p.z, p.z + p.h);
+          el.side.setAttribute("d", sh.sil);
+          el.top.setAttribute("d", poly(ringAt(P, ring, p.z + p.h)));
+          el.crease.setAttribute("d", sh.crease);
+          el.marks.setAttribute("d", (p.marks ? p.marks(top, P, p) : "") + detailMarks(top, p));
+          decal(el, p, top);
+        }
         // a soft shadow on the ground, drifting and fading as the body rises
         if (p.shadow !== false && (p.layer ?? 2) >= 1) {
           const ground = p.ground ?? 0, lift = Math.max(0, p.z - ground);

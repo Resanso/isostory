@@ -9,6 +9,7 @@ Numbers are defaults: change one only for a reason you can state. These rules pa
 - **S3 · change of state is the story.** Every beat changes something visible: a pile becomes a grid, a grid becomes a shortlist, a card becomes a hire. If two frames a beat apart look alike, the beat is empty.
 - **S4 · the end holds.** The last 1.4 s holds still: a held frame or an end card. `look.mjs` checks it. Loops for components start from a frame that matches the end, or cut through the end card.
 - **S5 · fewer bodies.** 10–40 bodies. Over ~60 the frame turns to noise at 360 px and renders slow.
+- **S6 · build recognisable objects from parts.** A vehicle needs wheels (`shape: "cyl"`), glass and lights; a phone a screen; a box a lid line. One block with a colour reads as "a block". Ask of every object: would a stranger name it with the labels hidden? Put windows, lights and doors on as thin bodies against the visible faces (+x and +y at the default camera). Put a chassis or anything that must stay under other parts on `layer: 1`.
 
 ## M · motion
 

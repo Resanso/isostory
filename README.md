@@ -12,13 +12,13 @@ Every clip below is one story file in [`examples/`](examples), rendered with `re
 
 Résumés pile up, get dealt onto a table, AIDA's bar scores them, the best five fold into cards and move down a hiring pipeline. Theme `paper`, logo printed on the table, chapters + pins, end card.
 
-https://github.com/user-attachments/assets/983c2ae9-c0dc-4982-824b-442a339ccc93
+https://github.com/user-attachments/assets/e9bea4f7-5b78-4d4a-825c-7dbecdc80ed8
 
 ### Motion component · 16:9 · 14 s — [`logistics.js`](examples/logistics.js) *(fictional brand)*
 
-Parcels with the logo on every box ride a conveyor through a scanner gate and load into a truck. Theme `studio`, orange accent, lower-third, pins.
+Parcels with the logo on every box ride a conveyor through a scanner gate and load into a truck built from parts (six `cyl` wheels, a railed bed, cab, glass, headlights). Theme `studio`, orange accent, lower-third, pins.
 
-https://github.com/user-attachments/assets/8750d6ea-a431-48f1-8f5c-5101c363ba3c
+https://github.com/user-attachments/assets/fc2f5130-928d-4cfc-ab0c-fc844adddce2
 
 ### Video ad · 1:1 · 12 s — [`fintech-ad.js`](examples/fintech-ad.js) *(fictional brand)*
 
@@ -30,7 +30,7 @@ https://github.com/user-attachments/assets/83c7fb09-1412-44cf-9cf6-5d30d1de89fd
 
 Cut to a 120 bpm grid: hook in the first second, a quote, a kinetic title with a highlighted word, a 0→92% stat, a lower-third, karaoke subtitles + [SRT](https://github.com/Resanso/isostory/releases/download/v0.1.0/ad-hire-9x16.srt), end card with CTA.
 
-https://github.com/user-attachments/assets/934bb4d8-50b7-42a2-9cbe-8b5a6c347a2f
+https://github.com/user-attachments/assets/735c0902-d492-4d5b-b0d2-8dbddcd61566
 
 The same story renders to any aspect: `--aspect 9:16,1:1,16:9`. Add `--alpha` for a transparent WebM + ProRes 4444 to lay over footage. MP4s, SRTs and posters are also on the [v0.1.0 release](https://github.com/Resanso/isostory/releases/tag/v0.1.0).
 

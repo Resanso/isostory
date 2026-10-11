@@ -97,7 +97,7 @@ export default ISO.story({
   },
   pins: (t) => [
     { id: "aida", at: [scanX(t), -80, 14], text: "AIDA", show: t > 5.0 && t < 7.4, tone: "accent" },
-    { id: "hire", at: [LANE_X(4), SLOT_Y(0), LANE_TOP + 16], text: "Raka P. · 92% cocok", show: t > 14.7, tone: "accent" },
+    { id: "hire", at: [LANE_X(4), SLOT_Y(0), LANE_TOP + 16], text: "Caecarryo · UI/UX Designer · 92% cocok", show: t > 14.7, tone: "accent" },
     ...LANES.map((name, k) => ({ id: `lane-${k}`, at: [LANE_X(k), -80, LANE_TOP], text: name, show: t > 9.0, tone: k === 4 && t >= 13.8 ? "accent" : "plain" })),
   ],
   chapters: [

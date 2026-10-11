@@ -58,7 +58,7 @@ export default ISO.story({
     { t0: B(11), t1: B(17), text: "Biarkan AIDA\nyang menyaring.", style: "title", at: "top", anim: "rise", emphasis: ["AIDA"] },
     { t0: B(17.5), t1: B(23.5), text: "{n}%", style: "stat", at: "top", group: "proof", anim: "pop", count: { from: 0, to: 92, dur: 1.1 } },
     { t0: B(18.5), t1: B(23.5), text: "cocok dengan brief kamu", style: "caption", group: "proof", anim: "rise" },
-    { t0: B(19), t1: B(23.5), text: "Raka P. · Senior Backend", style: "lower", anim: "slide" },
+    { t0: B(19), t1: B(23.5), text: "Caecarryo · UI/UX Designer", style: "lower", anim: "slide" },
   ],
   subtitles: [
     { t0: 0.2, t1: B(5), text: "Dua ratus lamaran untuk satu posisi." },
