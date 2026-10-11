@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>/*TITLE*/</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&display=swap" rel="stylesheet">
+<style>
+  :root { color-scheme: light; }
+  body { margin: 0; background: #e9ecf2; font-family: Inter, system-ui, sans-serif; color: #151a24; }
+  main { max-width: 1120px; margin: 0 auto; padding: 28px 20px 80px; }
+  .tools { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; font-size: 13px; margin-bottom: 16px; }
+  .tools b { font-weight: 600; margin-right: 2px; }
+  .tools a { color: #4a5568; text-decoration: none; padding: 3px 8px; border-radius: 999px; }
+  .tools a[aria-current=true] { background: #151a24; color: #fff; }
+  .tall #player { max-width: 420px; margin: 0 auto; }
+  .square #player { max-width: 640px; margin: 0 auto; }
+  h2 { font-size: 15px; font-weight: 600; margin: 56px 0 10px; }
+  body.frame { background: transparent; }
+  body.frame main { max-width: none; padding: 0; }
+  body.frame .tools, body.frame main > h2, body.frame #scroll { display: none; }
+  body.frame #player { max-width: none; }
+  body.transparent { background: repeating-conic-gradient(#d9dde5 0 25%, #f3f5f8 0 50%) 0 0/24px 24px; }
+  body.frame.transparent { background: transparent; }
+</style>
+</head>
+<body>
+<main>
+  <div class="tools" id="tools"></div>
+  <div id="player"></div>
+  <h2>Scroll mode</h2>
+  <div id="scroll"></div>
+</main>
+<script type="module">
+/*BUNDLE*/
+const q = new URLSearchParams(location.search);
+const S = globalThis.__STORY__;
+const aspect = q.get("aspect") || S.aspect || "16:9";
+document.body.classList.toggle("frame", q.has("frame"));
+document.body.classList.toggle("transparent", q.has("transparent"));
+const [aw, ah] = aspect.split(":").map(Number);
+document.body.classList.add(ah > aw ? "tall" : aw === ah ? "square" : "wide");
+const link = (k, v, label) => { const u = new URLSearchParams(q); v == null ? u.delete(k) : u.set(k, v); const cur = (q.get(k) ?? null) === v; return `<a href="?${u}" aria-current="${cur}">${label}</a>`; };
+document.getElementById("tools").innerHTML =
+  `<b>${S.name ?? "story"}</b>` +
+  ["16:9", "9:16", "1:1"].map((a) => link("aspect", a, a)).join("") + " · " +
+  ["paper", "studio", "midnight"].map((t) => link("theme", t, t)).join("") + " · " +
+  link("transparent", q.has("transparent") ? null : "", q.has("transparent") ? "backdrop" : "transparent") +
+  link("frame", "", "frame mode");
+await document.fonts?.ready;
+ISO.mount(document.getElementById("player"), S, { aspect });
+if (!q.has("frame")) ISO.mount(document.getElementById("scroll"), S, { aspect, mode: "scroll" });
+</script>
+</body>
+</html>

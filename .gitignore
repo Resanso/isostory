@@ -1,0 +1,8 @@
+node_modules/
+*.png
+*.mp4
+*.webm
+*.mov
+*.gif
+isostory-*.html
+.DS_Store
