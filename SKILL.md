@@ -1,7 +1,7 @@
 ---
 name: isostory
-description: Use when someone wants an animated isometric story — an explainer, a product "how it works", a landing-page motion component, a scroll-driven section, or a video ad with kinetic text and subtitles — or runs /isostory with an idea. Builds one story file on a Hairline-based engine (coloured rounded solids, camera, logo decals, animated text, subtitles, title/end cards) that plays on the web (autoplay, scroll, embeddable component) and renders to MP4/WebM/GIF/ProRes in 16:9, 9:16 and 1:1.
-argument-hint: "[idea] [--ad | --component] [--logo path] [--accent #hex]"
+description: Use when someone wants an animated isometric story — an explainer, a product "how it works", a landing-page motion component, a scroll-driven section, or a video ad with kinetic text and subtitles — or runs /isostory with an idea. Builds one story file on a Hairline-based engine (coloured rounded solids, camera, logo decals, animated text, subtitles, title/end cards) that plays on the web (autoplay, scroll, embeddable component) and renders to MP4/WebM/GIF/ProRes in 16:9, 9:16 and 1:1. Anatomy mode draws detailed, recognisable machines and places (washers, registers, scooters, shop-houses) with the Anatomy kit on a Remotion stage, with an optional ElevenLabs voice-over.
+argument-hint: "[idea] [--ad | --component] [--anatomy] [--logo path] [--accent #hex]"
 ---
 
 # isostory: storytelling motion, for the web and for video
@@ -23,6 +23,16 @@ Ask (or infer from the request) which of these, because it changes the defaults:
 | text | chapter lines, pins | hook in the first second, kinetic titles, **subtitles always** (feeds autoplay muted), end card + CTA |
 | sound | none | optional track; cut on beats with `beat(n, bpm)` |
 | output | `mount()` in the page, `transparent` to sit on the page's own background | `render.mjs` → mp4 (+ srt, poster); `--alpha` for overlays in an editor |
+
+### Which engine?
+
+| | **default** (`isostory.js`) | **anatomy mode** (`anatomy/`) |
+|---|---|---|
+| objects | rounded solids: cards, piles, boards, simple devices | real machines and places from many small parts: a washer with a turning drum, a cash register, a scooter, a shop-house |
+| choose when | abstract flows, data, web components, a quick turnaround | a stranger must name every object with the labels hidden and boxes can't get there (S6), or the person asks for detailed / premium objects |
+| output | web (autoplay, scroll) + video | video (MP4, GIF, SRT, poster) |
+
+For anatomy mode, the storyboard (§1) is the same; then read **`anatomy/anatomy.md`** and follow it instead of §2–§4 (`anatomy/new.mjs` starts a project; `look.mjs`, `vo.mjs`, `render.mjs` live in it). Reuse the object library before drawing a new object; a new object is 20–60 minutes, so say so when the storyboard needs several.
 
 ## 1. Brief → storyboard (before any code)
 
@@ -74,4 +84,5 @@ Edit only the story file, then `look.mjs` again. Timing changes are changes to n
 | subtitles that repeat the on-screen title word for word | subtitles say the voice line; titles say the idea in 2–5 words (T3) |
 | a 9:16 ad whose subtitle sits at the very bottom | the built-in safe area (`subtitle` sits at 80% on tall); keep CTAs above 85% (T5) |
 | a long text animated by character | by word for titles, by char only for ≤ 2 short words or kickers (T2) |
+| boxes that no one can name, after you have added every detail the default engine allows | switch to anatomy mode (`anatomy/anatomy.md`) for those objects |
 | editing the engine because something cannot be expressed | say so to the person; the story is wrong or the request needs an engine change they should approve |

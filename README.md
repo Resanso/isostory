@@ -2,7 +2,7 @@
 
 A Claude Code skill for storytelling motion: isometric, coloured, branded stories that play on the web (autoplay, scroll-scrubbed, embeddable component) and render frame-exact to video (MP4, WebM, GIF, ProRes 4444 with alpha) in 16:9, 9:16 and 1:1 — with kinetic text, karaoke subtitles (+ SRT/VTT), logo decals and end cards.
 
-Built on the [Hairline](https://github.com/lucasmarkes/hairline) kernel (MIT).
+Built on the [Hairline](https://github.com/lucasmarkes/hairline) kernel (MIT). Anatomy mode uses the [Anatomy](https://github.com/wheresryan22/anatomy) kit (MIT).
 
 ## Examples
 
@@ -34,6 +34,33 @@ https://github.com/user-attachments/assets/735c0902-d492-4d5b-b0d2-8dbddcd61566
 
 The same story renders to any aspect: `--aspect 9:16,1:1,16:9`. Add `--alpha` for a transparent WebM + ProRes 4444 to lay over footage. MP4s, SRTs and posters are also on the [v0.1.0 release](https://github.com/Resanso/isostory/releases/tag/v0.1.0).
 
+## Anatomy mode
+
+For stories whose objects must be recognised at a glance — a washing machine with a turning drum, a cash register whose drawer opens, a courier scooter, a row of shop-houses — anatomy mode draws them with the [Anatomy](https://github.com/wheresryan22/anatomy) kit (MIT, vendored): four-tone solids built from many small parts (bevels, knurls, screws, glass, hoses), placed in scenes on a [Remotion](https://www.remotion.dev) stage that renders frame-exact to video, with the same kinetic titles, karaoke subtitles, end card and an optional ElevenLabs voice-over. Guide: [`anatomy/anatomy.md`](anatomy/anatomy.md).
+
+### Video ad · 9:16 · 30 s · Indonesian voice-over — [`laundrybob/story.js`](anatomy/examples/laundrybob/story.js)
+
+Five scenes for a laundry-management platform: receipts vanish off a counter, a cash drawer leaks notes, rival apps' branch links break, bags get QR tags and hop washer → iron → shelf, every branch wires into one dashboard, and a courier rides a GPS route to a WhatsApp "Tiba ✓". [MP4 9:16](https://github.com/Resanso/isostory/releases/download/v0.2.0/laundrybob-9x16.mp4) · [1:1](https://github.com/Resanso/isostory/releases/download/v0.2.0/laundrybob-1x1.mp4) · [16:9](https://github.com/Resanso/isostory/releases/download/v0.2.0/laundrybob-16x9.mp4) · [SRT](https://github.com/Resanso/isostory/releases/download/v0.2.0/laundrybob-9x16.srt)
+
+<img src="media/anatomy/laundrybob-9x16.gif" width="320" alt="LaundryBob ad: a laundry counter, a cash drawer, branches, a tracked conveyor, a dashboard and a courier on a map, drawn as detailed isometric objects">
+
+### Motion component · 16:9 · 12 s — [`courier/story.js`](anatomy/examples/courier/story.js)
+
+A small city lands block by block; the courier scooter (rebuilt per frame as it turns) rides the road under a pulsing GPS pin while the route lights up behind it, and the customer's phone gets "Delivered ✓". [MP4 16:9](https://github.com/Resanso/isostory/releases/download/v0.2.0/courier-16x9.mp4) · [9:16](https://github.com/Resanso/isostory/releases/download/v0.2.0/courier-9x16.mp4)
+
+<img src="media/anatomy/courier-16x9.gif" width="640" alt="A courier scooter riding a lit route across an isometric city under a GPS pin">
+
+### Product loop · 1:1 · 10 s — [`washer/story.js`](anatomy/examples/washer/story.js)
+
+One front-loader (≈60 parts: drawer, LCD in a recess, knurled knob, door ring with glass, a drum that spins up, drain hose, towels); the LCD counts down to DONE and a phone pings "Ready ✓". [MP4](https://github.com/Resanso/isostory/releases/download/v0.2.0/washer-1x1.mp4)
+
+<img src="media/anatomy/washer-1x1.gif" width="400" alt="A detailed isometric washing machine whose drum spins while the display counts down">
+
+```sh
+node ~/.claude/skills/isostory/anatomy/new.mjs my-story --example courier   # template + example + npm install
+cd my-story && node look.mjs && node render.mjs --formats mp4,gif,srt,poster
+```
+
 ## Install
 
 ```sh
@@ -53,7 +80,15 @@ Then in Claude Code: `/isostory a 15s ad for … --logo ./logo.svg --accent #1b6
 | `node <skill>/look.mjs story.js --aspect 9:16,16:9,1:1` | contact sheets + checks (NaN, frame, text collisions, hook, held end) |
 | `node <skill>/render.mjs story.js --aspect 9:16 --formats mp4,srt,poster` | video; `--alpha` for WebM-alpha + ProRes 4444; `--audio track.mp3` |
 
-Needs Node 18+, and ffmpeg for `render.mjs`. `look`/`render` install `playwright-core` once into your user cache and drive your Chrome.
+Anatomy mode, from a project made by `anatomy/new.mjs`:
+
+| command | does |
+|---|---|
+| `node look.mjs [--aspect 9:16,1:1,16:9] [--at 1.2,4.5]` | contact sheets + browser-error check |
+| `ELEVENLABS_API_KEY=… node vo.mjs <voiceId>` | voice-over: one clip per subtitle window, laid on the timeline |
+| `node render.mjs [--formats mp4,gif,srt,poster]` | video (+ GIF preview, SRT, poster) per aspect |
+
+Needs Node 18+ (anatomy mode: Node 20+ and Chrome, which Remotion downloads), and ffmpeg for `render.mjs`. `look`/`render` install `playwright-core` once into your user cache and drive your Chrome.
 
 ## Files
 
@@ -63,3 +98,5 @@ Needs Node 18+, and ffmpeg for `render.mjs`. `look`/`render` install `playwright
 - `kernel.js` — Hairline kernel
 - `examples/` — `hiring.js`, `logistics.js` (motion components), `fintech-ad.js`, `ad.js` (ads), `logos/` (fictional logos for the demos)
 - `embed.md` — React/Next and plain-HTML embedding
+- `anatomy/` — anatomy mode: `anatomy.md` (guide), `new.mjs` (start a project), `template/` (Remotion stage, vendored Anatomy kit, object library: washer, shop props, city, scooter; `look`/`render`/`vo` tools), `examples/` (`laundrybob`, `courier`, `washer`)
+- `media/` — README previews
