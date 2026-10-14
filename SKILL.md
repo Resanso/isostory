@@ -1,7 +1,7 @@
 ---
 name: isostory
-description: Use when someone wants an animated isometric story — an explainer, a product "how it works", a landing-page motion component, a scroll-driven section, or a video ad with kinetic text and subtitles — or runs /isostory with an idea. Builds one story file on a Hairline-based engine (coloured rounded solids, camera, logo decals, animated text, subtitles, title/end cards) that plays on the web (autoplay, scroll, embeddable component) and renders to MP4/WebM/GIF/ProRes in 16:9, 9:16 and 1:1. Anatomy mode draws detailed, recognisable machines and places (washers, registers, scooters, shop-houses) with the Anatomy kit on a Remotion stage, with an optional ElevenLabs voice-over.
-argument-hint: "[idea] [--ad | --component] [--anatomy] [--logo path] [--accent #hex]"
+description: Use when someone wants an animated isometric story — an explainer, a product "how it works", a landing-page motion component, a scroll-driven section, or a video ad with kinetic text and subtitles — or runs /isostory with an idea. Builds one story file on a Hairline-based engine (coloured rounded solids, camera, logo decals, animated text, subtitles, title/end cards) that plays on the web (autoplay, scroll, embeddable component) and renders to MP4/WebM/GIF/ProRes in 16:9, 9:16 and 1:1. Anatomy mode draws detailed, recognisable machines and places (washers, registers, scooters, shop-houses) with the Anatomy kit on a Remotion stage, with an optional ElevenLabs voice-over. Edit mode (in progress) dresses up a talking-head video the person already shot: jump cuts, kinetic captions, inserts, camera moves, locally generated music and SFX, in one of three measured style presets.
+argument-hint: "[idea] [--ad | --component] [--anatomy] [--edit video] [--logo path] [--accent #hex]"
 ---
 
 # isostory: storytelling motion, for the web and for video
@@ -33,6 +33,10 @@ Ask (or infer from the request) which of these, because it changes the defaults:
 | output | web (autoplay, scroll) + video | video (MP4, GIF, SRT, poster) |
 
 For anatomy mode, the storyboard (§1) is the same; then read **`anatomy/anatomy.md`** and follow it instead of §2–§4 (`anatomy/new.mjs` starts a project; `look.mjs`, `vo.mjs`, `render.mjs` live in it). Reuse the object library before drawing a new object; a new object is 20–60 minutes, so say so when the storyboard needs several.
+
+### Footage instead of a story? (edit mode, in progress)
+
+When the person hands in a video of themselves talking to camera and wants it edited (captions, cuts, B-roll-style inserts, music, SFX), that is **edit mode**, not a story: read **`edit/edit.md`** and follow it instead of §1–§4. It holds the local audio pipeline (ACE-Step music, ffmpeg SFX kit, mixer at −14 LUFS), the three style presets (`panel`, `datapop`, `podcast`) with reference Remotion compositions in `edit/presets/`, person segmentation (`edit/segment/`), and how to learn a new reference style (`edit/reference/`). Everything runs locally; no paid or cloud APIs.
 
 ## 1. Brief → storyboard (before any code)
 

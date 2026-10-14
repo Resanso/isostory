@@ -61,6 +61,10 @@ node ~/.claude/skills/isostory/anatomy/new.mjs my-story --example courier   # te
 cd my-story && node look.mjs && node render.mjs --formats mp4,gif,srt,poster
 ```
 
+## Edit mode (in progress)
+
+For footage you already shot — one person talking to camera, 9:16 — edit mode adds jump cuts, kinetic captions, inserts, camera moves, music and SFX, all locally (no paid or cloud APIs). Built so far: a music generator setup on [ACE-Step 1.5](https://github.com/ACE-Step/ACE-Step-1.5) (MIT, outputs usable commercially), an ffmpeg-only SFX kit, a stereo mixer that masters to −14 LUFS, three style presets (`panel`, `datapop`, `podcast`) with reference Remotion compositions, person segmentation with Apple Vision, and a recipe for measuring a new reference style. Guide: [`edit/edit.md`](edit/edit.md).
+
 ## Install
 
 ```sh
@@ -98,5 +102,6 @@ Needs Node 18+ (anatomy mode: Node 20+ and Chrome, which Remotion downloads), an
 - `kernel.js` — Hairline kernel
 - `examples/` — `hiring.js`, `logistics.js` (motion components), `fintech-ad.js`, `ad.js` (ads), `logos/` (fictional logos for the demos)
 - `embed.md` — React/Next and plain-HTML embedding
+- `edit/` — edit mode (in progress): `edit.md` (guide), `audio/` (`gen_ace.py`, `audio_index.py`, `sfx.sh`, `master.sh`, `mixer.py`), `presets/` (`Panel.tsx`, `DataPop.tsx`, `Podcast.tsx`, `plan.ts`), `segment/seg.swift`, `reference/` (style analysis)
 - `anatomy/` — anatomy mode: `anatomy.md` (guide), `new.mjs` (start a project), `template/` (Remotion stage, vendored Anatomy kit, object library: washer, shop props, city, scooter; `look`/`render`/`vo` tools), `examples/` (`laundrybob`, `courier`, `washer`)
 - `media/` — README previews
