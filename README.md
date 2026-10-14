@@ -65,6 +65,32 @@ cd my-story && node look.mjs && node render.mjs --formats mp4,gif,srt,poster
 
 For footage you already shot — one person talking to camera, 9:16 — edit mode adds jump cuts, kinetic captions, inserts, camera moves, music and SFX, all locally (no paid or cloud APIs). Built so far: a music generator setup on [ACE-Step 1.5](https://github.com/ACE-Step/ACE-Step-1.5) (MIT, outputs usable commercially), an ffmpeg-only SFX kit, a stereo mixer that masters to −14 LUFS, three style presets (`panel`, `datapop`, `podcast`) with reference Remotion compositions, person segmentation with Apple Vision, and a recipe for measuring a new reference style. Guide: [`edit/edit.md`](edit/edit.md).
 
+The same 68 s talking-head clip, jump-cut to 40 s and edited four ways (sound on). Music generated locally with ACE-Step, SFX synthesised with ffmpeg, mixed to −14 LUFS stereo.
+
+### `panel` preset · 9:16 · 40 s
+
+Dark panel with a rounded speaker inset, one-word captions, UI cards that land on the word naming them, a rubber stamp, a checklist that lights up per step, a light CTA card; quiet lo-fi bed and sparse UI dings. [Full MP4](https://github.com/Resanso/isostory/releases/download/v0.3.0/edit-panel-9x16.mp4)
+
+https://github.com/user-attachments/assets/01eceb82-b57c-4cc7-b8e3-88fa99229066
+
+### `datapop` preset · 9:16 · 40 s
+
+No running captions: kinetic keywords and count-up numbers, a floating word stack, focus pulls, the speaker shrinking into a PiP under neon icons, white chart boards, a neon CTA; no music, an SFX on every pop. [Full MP4](https://github.com/Resanso/isostory/releases/download/v0.3.0/edit-datapop-9x16.mp4)
+
+https://github.com/user-attachments/assets/1d11a520-24b8-411c-bed1-e6711ec387da
+
+### `podcast` preset · 9:16 · 40 s
+
+Zoom-out hook with the title behind the speaker's head (Apple Vision segmentation), phrase-box captions, wide/tight crop alternation, black-and-white flashes on punch lines, a flow diagram and a screen split; almost dry. [Full MP4](https://github.com/Resanso/isostory/releases/download/v0.3.0/edit-podcast-9x16.mp4)
+
+https://github.com/user-attachments/assets/2c049b4b-63f4-4a45-b2de-bffee8a56e2a
+
+### First prototype · 9:16 · 40 s
+
+Statement-stack kinetic captions, inserts (3D phone, picture, drawn steps, isostory scene) and camera moves that follow them, with a music bed and three SFX. [Full MP4](https://github.com/Resanso/isostory/releases/download/v0.3.0/edit-captions-9x16.mp4)
+
+https://github.com/user-attachments/assets/a48bfb61-d88d-4280-99bc-f96d1f81831e
+
 ## Install
 
 ```sh
