@@ -128,6 +128,6 @@ Needs Node 18+ (anatomy mode: Node 20+ and Chrome, which Remotion downloads), an
 - `kernel.js` — Hairline kernel
 - `examples/` — `hiring.js`, `logistics.js` (motion components), `fintech-ad.js`, `ad.js` (ads), `logos/` (fictional logos for the demos)
 - `embed.md` — React/Next and plain-HTML embedding
-- `edit/` — edit mode (in progress): `edit.md` (guide), `audio/` (`gen_ace.py`, `audio_index.py`, `sfx.sh`, `master.sh`, `mixer.py`), `presets/` (`Panel.tsx`, `DataPop.tsx`, `Podcast.tsx`, `Editorial.tsx`, `plan.ts`), `motion/` (`motion.md`, `fx.ts`, `type.tsx`, `marks.tsx`, `camera.ts`, `transitions.tsx`, `boards.tsx`, `three.tsx`), `assets/` (`find.mjs`, `cutout.swift`), `segment/seg.swift`, `reference/` (`measure.sh`, style analysis)
+- `edit/` — edit mode (in progress): `edit.md` (guide), `cut.py` (proxy, jump cuts, word times), `audio/` (`gen_ace.py`, `audio_index.py`, `sfx.sh`, `master.sh`, `mixer.py`), `presets/` (`Panel.tsx`, `DataPop.tsx`, `Podcast.tsx`, `Editorial.tsx`, `plan.ts`), `motion/` (`motion.md`, `fx.ts`, `type.tsx`, `marks.tsx`, `camera.ts`, `transitions.tsx`, `boards.tsx`, `three.tsx`), `assets/` (`find.mjs`, `cutout.swift`), `segment/seg.swift`, `reference/` (`measure.sh`, style analysis)
 - `anatomy/` — anatomy mode: `anatomy.md` (guide), `new.mjs` (start a project), `template/` (Remotion stage, vendored Anatomy kit, object library: washer, shop props, city, scooter; `look`/`render`/`vo` tools), `examples/` (`laundrybob`, `courier`, `washer`)
 - `media/` — README previews

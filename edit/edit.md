@@ -17,6 +17,20 @@ Every path here is relative to this skill's folder. Run the tools from the perso
 | Stage | Remotion 4.0.535: `<Video>` from `@remotion/media` as a `Series` of `trimBefore` segments | the edit |
 | Audio | built **once** by ffmpeg (§4) and played as one file | `mix.wav` |
 
+`edit/cut.py` runs the first three rows:
+
+```bash
+python3 -I edit/cut.py scan <source.mov> <work>          # proxy.mp4, voice.wav, source transcript + silences
+# read the transcript: note retakes ("oh sorry, ulang ya…") and false starts as source-second ranges
+python3 -I edit/cut.py cut <work> --drop 35.0-42.9 --fix loongan=lowongan --hold 1.1   # data.json, voice_cut.wav
+bash edit/audio/master.sh <work>/voice_cut.wav <work>/voice_m.wav "highpass=f=80,acompressor=threshold=-20dB:ratio=3:attack=5:release=80" -14 -2
+python3 -I edit/audio/mixer.py --voice <work>/voice_m.wav --out public/mix.wav --event=sfx/whoosh.wav@1.19@-6 …
+```
+
+It cuts first and transcribes the cut audio, so word times are edit seconds. Without the WhisperX aligner the times are good to about ±0.1 s, which is enough to anchor captions. Face tracking (MediaPipe) is not in it yet: when the speaker sits still, a fixed focus point (`camStyle({ s, x: 540, y: <face y> })`) is enough.
+
+In zsh, pass a list of `--event=` flags held in a variable as `${=EV}`, because zsh does not split unquoted variables.
+
 The preset compositions read one `data.json`:
 `{ fps, durationInFrames, segs: [{ fromF, toF, outF }], words: [{ i, text, start, end }] }`.
 `segs` are the kept pieces in source frames, placed at `outF` in the edit; word times are in edit seconds. They also read `face.json`: `[[x, y, size], …]` per source frame, normalised.
