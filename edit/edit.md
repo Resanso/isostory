@@ -197,6 +197,8 @@ Copy **behaviours**, never the reference's assets, footage, fonts or music.
 - **Board vignette too dark.** Keep it at about 0.28 from 65 % out.
 - **A marker ellipse that draws only a corner.** An absolutely placed `<svg>` with `width/height: auto` falls back to 300x150. Give it an explicit box (`motion/marks.tsx` does).
 - **Captions that read small on a phone.** The editorial key word should span 50–80 % of the width (152 px+ on the 1080 stage); shorten the word rather than shrink it.
+- **Editorial on a bright, white-wall clip.** The look wants a dark field behind the type. Grade the footage `contrast(1.12) saturate(.85) brightness(.82) sepia(.18)`, add a vignette to 0.6 and a bottom gradient to 0.45, and put the stack on the chest (about y 1270), not on the wall.
+- **Long key lines overflow.** "NOMOR BERAPA?" at 136 px is wider than the stage. Split it into `key` + `tail` ("NOMOR" / "berapa?"); do not shrink it.
 - **Empty photo search.** `--orient portrait` with only the no-key sources often returns nothing; search without it and let `Photo` crop (cover + `objectPosition`), or add a Pexels/Unsplash key.
 - **Word times drift across long pauses.** whisper.cpp (even with `--dtw`) smears words over a 5 s silence. Cut first (`silencedetect` keeps, retakes out), then transcribe the cut audio with `-ml 1 -sow --dtw large.v3.turbo`: the word times are then already edit seconds.
 - **404 on `public/` files in a render.** Remotion does not follow symlinks in `public/`; copy the proxy and assets in.
