@@ -184,4 +184,6 @@ Copy **behaviours**, never the reference's assets, footage, fonts or music.
 - **A marker ellipse that draws only a corner.** An absolutely placed `<svg>` with `width/height: auto` falls back to 300x150. Give it an explicit box (`motion/marks.tsx` does).
 - **Captions that read small on a phone.** The editorial key word should span 50–80 % of the width (152 px+ on the 1080 stage); shorten the word rather than shrink it.
 - **Empty photo search.** `--orient portrait` with only the no-key sources often returns nothing; search without it and let `Photo` crop (cover + `objectPosition`), or add a Pexels/Unsplash key.
+- **Word times drift across long pauses.** whisper.cpp (even with `--dtw`) smears words over a 5 s silence. Cut first (`silencedetect` keeps, retakes out), then transcribe the cut audio with `-ml 1 -sow --dtw large.v3.turbo`: the word times are then already edit seconds.
+- **404 on `public/` files in a render.** Remotion does not follow symlinks in `public/`; copy the proxy and assets in.
 - **The title hidden behind the head.** Move it up until the hair only touches the last line.
