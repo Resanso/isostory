@@ -63,7 +63,7 @@ cd my-story && node look.mjs && node render.mjs --formats mp4,gif,srt,poster
 
 ## Edit mode (in progress)
 
-For footage you already shot — one person talking to camera, 9:16 — edit mode adds jump cuts, kinetic captions, inserts, camera moves, music and SFX, all locally (no paid or cloud APIs). Built so far: a music generator setup on [ACE-Step 1.5](https://github.com/ACE-Step/ACE-Step-1.5) (MIT, outputs usable commercially), an ffmpeg-only SFX kit, a stereo mixer that masters to −14 LUFS, three style presets (`panel`, `datapop`, `podcast`) with reference Remotion compositions, person segmentation with Apple Vision, and a recipe for measuring a new reference style. Guide: [`edit/edit.md`](edit/edit.md).
+For footage you already shot — one person talking to camera, 9:16 — edit mode adds jump cuts, kinetic captions, inserts, camera moves, music and SFX, all locally (no paid or cloud APIs). Built so far: a music generator setup on [ACE-Step 1.5](https://github.com/ACE-Step/ACE-Step-1.5) (MIT, outputs usable commercially), an ffmpeg-only SFX kit, a stereo mixer that masters to −14 LUFS, four style presets (`panel`, `datapop`, `podcast`, `editorial`) with reference Remotion compositions, a motion kit (kinetic caption stacks, hand-drawn marks, camera moves, light-leak / film-burn / slice / glitch / whip transitions, white boards, photo and document inserts, 3D objects), a finder for openly licensed photos, icons, 3D models and sound (Openverse, Wikimedia Commons, Iconify, Poly Haven; Pexels, Unsplash and Pixabay with a free key) that keeps the credits, subject cutouts and person segmentation with Apple Vision, and a script that measures a new reference style from files or reel links. Guide: [`edit/edit.md`](edit/edit.md).
 
 The same 68 s talking-head clip, jump-cut to 40 s and edited four ways (sound on). Music generated locally with ACE-Step, SFX synthesised with ffmpeg, mixed to −14 LUFS stereo.
 
@@ -128,6 +128,6 @@ Needs Node 18+ (anatomy mode: Node 20+ and Chrome, which Remotion downloads), an
 - `kernel.js` — Hairline kernel
 - `examples/` — `hiring.js`, `logistics.js` (motion components), `fintech-ad.js`, `ad.js` (ads), `logos/` (fictional logos for the demos)
 - `embed.md` — React/Next and plain-HTML embedding
-- `edit/` — edit mode (in progress): `edit.md` (guide), `audio/` (`gen_ace.py`, `audio_index.py`, `sfx.sh`, `master.sh`, `mixer.py`), `presets/` (`Panel.tsx`, `DataPop.tsx`, `Podcast.tsx`, `plan.ts`), `segment/seg.swift`, `reference/` (style analysis)
+- `edit/` — edit mode (in progress): `edit.md` (guide), `audio/` (`gen_ace.py`, `audio_index.py`, `sfx.sh`, `master.sh`, `mixer.py`), `presets/` (`Panel.tsx`, `DataPop.tsx`, `Podcast.tsx`, `Editorial.tsx`, `plan.ts`), `motion/` (`motion.md`, `fx.ts`, `type.tsx`, `marks.tsx`, `camera.ts`, `transitions.tsx`, `boards.tsx`, `three.tsx`), `assets/` (`find.mjs`, `cutout.swift`), `segment/seg.swift`, `reference/` (`measure.sh`, style analysis)
 - `anatomy/` — anatomy mode: `anatomy.md` (guide), `new.mjs` (start a project), `template/` (Remotion stage, vendored Anatomy kit, object library: washer, shop props, city, scooter; `look`/`render`/`vo` tools), `examples/` (`laundrybob`, `courier`, `washer`)
 - `media/` — README previews
